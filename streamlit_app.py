@@ -14,7 +14,7 @@ with st.sidebar:
     else:
         st.warning('credentials are not working.', icon='⚠️')
 
-    st.subheader('Models and parameters')[[]]
+    st.subheader('Models and parameters')
     selected_model = st.sidebar.selectbox('Choose a Llama2 model', ['Llama2-7B', 'Llama2-13B'], key='selected_model')
     if selected_model == 'Llama2-7B':
         llm = 'a16z-infra/llama7b-v2-chat:4f0a4744c7295c024a1de15e1a63c880d3da035fa1f49bfd344fe076074c8eea'
