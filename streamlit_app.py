@@ -1,9 +1,13 @@
 import streamlit as st
 import replicate
 import os
+from random import randrange
 
 # App title
 st.set_page_config(page_title="🦙💬 Llama 2 Chatbot - THE OMEGA TEST (By Bryce Rodgers)")
+
+# Openers
+openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr matey got a question for me?"]
 
 # Replicate Credentials
 with st.sidebar:
@@ -29,7 +33,7 @@ with st.sidebar:
 
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
-    st.session_state.messages = [{"role": "assistant", "content": "Arrr, ya need anything else matey?"}]
+    st.session_state.messages = [{"role": "assistant", "content": openers[randrange(2)]}]
 
 # Display or clear chat messages
 for message in st.session_state.messages:
