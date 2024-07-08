@@ -11,7 +11,7 @@ openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr ma
 
 # Replicate Credentials
 with st.sidebar:
-    st.title('🦙💬 Llama 2 Chatbot\naka THE OMEGA TEST\n(By Bryce Rodgers)')
+    st.title('💬 Pirate Chatbot\naka THE OMEGA TEST\n(By Bryce Rodgers)')
     if 'REPLICATE_API_TOKEN' in st.secrets:
         st.success('API key is good.', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
