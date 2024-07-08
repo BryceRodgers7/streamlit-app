@@ -4,14 +4,14 @@ import os
 from random import randrange
 
 # App title
-st.set_page_config(page_title="🦙💬 Llama 2 Chatbot - THE OMEGA TEST (By Bryce Rodgers)")
+st.set_page_config(page_title="💬 Pirate Chatbot")
 
 # Openers
 openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr matey got a question for me?"]
 
 # Replicate Credentials
 with st.sidebar:
-    st.title('💬 Pirate Chatbot\naka THE OMEGA TEST\n(By Bryce Rodgers)')
+    st.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
     if 'REPLICATE_API_TOKEN' in st.secrets:
         st.success('API key is good.', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
@@ -19,7 +19,7 @@ with st.sidebar:
         st.warning('credentials are not working.', icon='⚠️')
 
     st.subheader('Models and parameters')
-    selected_model = st.sidebar.selectbox('Choose a Llama2 model', ['Llama2-7B', 'Llama2-13B', 'Mistral-7B'], key='selected_model')
+    selected_model = st.sidebar.selectbox('Choose a 🦙 Llama2 model', ['Llama2-7B', 'Llama2-13B', 'Mistral-7B'], key='selected_model')
     if selected_model == 'Llama2-7B':
         llm = 'a16z-infra/llama7b-v2-chat:4f0a4744c7295c024a1de15e1a63c880d3da035fa1f49bfd344fe076074c8eea'
     elif selected_model == 'Llama2-13B':
@@ -47,7 +47,7 @@ st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 # Function for generating LLaMA2 response. Refactored from https://github.com/a16z-infra/llama2-chatbot
 def generate_llama2_response(prompt_input):
     #string_dialogue = "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'."
-    string_dialogue = "You are a helpful assistant. You talk like a pirate."
+    string_dialogue = "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate."
     for dict_message in st.session_state.messages:
         if dict_message["role"] == "user":
             string_dialogue += "User: " + dict_message["content"] + "\n\n"
