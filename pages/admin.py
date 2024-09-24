@@ -11,7 +11,7 @@ from random import randrange
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
-current_content = []
+current_content = None
 
 # Verify the user's role
 if st.session_state.role not in ["user", "admin", "super-admin"]:
