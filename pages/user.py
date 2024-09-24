@@ -4,12 +4,16 @@ import replicate
 import os
 from random import randrange
 
+<<<<<<< HEAD
+menu_with_redirect()
+
+=======
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
 
 #st.set_page_config(page_title="💬 Pirate Chatbot")
+>>>>>>> 3927d5c97c0428619031059a92fb429bbc7b9431
 st.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
-st.markdown(f"You are currently logged in with the role of {st.session_state.role}.")
 
 # Openers
 openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr matey got a question for me?"]
@@ -46,7 +50,7 @@ for message in st.session_state.messages:
 
 def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": openers[randrange(2)]}]
-st.button('Restart Chat History', on_click=clear_chat_history)
+st.sidebar.button('Restart Chat History', on_click=clear_chat_history)
 
 # Function for generating LLaMA2 response. Refactored from https://github.com/a16z-infra/llama2-chatbot
 def generate_llama2_response(prompt_input, hiddenprompt):
@@ -64,10 +68,10 @@ def generate_llama2_response(prompt_input, hiddenprompt):
                                   "temperature":temperature, "top_p":top_p, "max_length":max_length, "repetition_penalty":1})
     return output
 
-hidden_prompt = st.text_area("muck with the 'hidden' prompt below" , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
+hidden_prompt = st.text_area("Change the 'hidden prompt' below. This will be prepended to your regular chat message. " , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
 
 # User-provided prompt
-if prompt := st.chat_input(disabled=not replicate_api):
+if prompt := st.chat_input("Type your regular chat message here.", disabled=not replicate_api):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
