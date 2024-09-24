@@ -65,7 +65,7 @@ def hit_stability(prompt):
     params = {
         "prompt" : prompt,
         "aspect_ratio" : "1:1",
-        "seed" : 0,
+        "seed" : 42,
         "output_format" : 'jpeg',
         "model" : "sd3-medium"
     }
@@ -75,13 +75,13 @@ def hit_stability(prompt):
     # Decode response
     output_image = response.content
     finish_reason = response.headers.get("finish-reason")
-    seed = response.headers.get("seed")
+    # seed = response.headers.get("seed")
 
     # Check for NSFW classification
     if finish_reason == 'CONTENT_FILTERED':
         raise Warning("Generation failed NSFW classifier")
 
-    st.image(get_image(output_image), caption=prompt)
+    placeholder = st.image(get_image(output_image), caption=prompt)
 
 def fake_hit_stab(prompt):
     placeholder = st.image(
@@ -95,7 +95,12 @@ def fake_hit_stab(prompt):
 #         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
 
 placeholder = st.empty()
-img_prompt = st.text_area("What do you want to see?", "A beautiful parrot before a lush background of jungle canopy.")
-st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab, args=(img_prompt,), use_container_width=False)
-    
+img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
+#st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab, args=(img_prompt,), use_container_width=False)
+click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
+if click:
+    st.session_state.show_pic = True
+
+if st.session_state.show_pic:
+    fake_hit_stab(img_prompt)
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
