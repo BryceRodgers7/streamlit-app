@@ -59,18 +59,22 @@ def send_generation_request(host, params,):
 
     return response
 
-@st.cache_data
 def get_image(content):
-    return BytesIO(content)
+    global current_content
+    current_content = BytesIO(content)
+    return current_content
+
+def get_image_bytes():
+    return current_content.getvalue()
+    
+if "show_pic" not in st.session_state:
+        st.session_state.show_pic = False
+
+placeholder = st.empty()
 
 @st.cache_data
-def get_image_bytes(content):
-    buf = get_image(content)
-    return buf.getvalue()
-
-
-def hit_stability(prompt, placeholder):
-    global current_content
+def hit_stability(prompt):
+    global placeholder
     placeholder.empty()
     params = {
         "prompt" : prompt,
@@ -93,7 +97,8 @@ def hit_stability(prompt, placeholder):
 
     placeholder = st.image(get_image(current_content), caption=prompt)
 
-def fake_hit_stab(prompt, placeholder):
+def fake_hit_stab(prompt):
+    global placeholder
     placeholder.empty()
     images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
               "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
@@ -103,15 +108,7 @@ def fake_hit_stab(prompt, placeholder):
             images[randrange(3)],
             caption=prompt
         )
-    
-if "show_less" not in st.session_state:
-        st.session_state.more_stuff = False
 
-# def clear_image():
-#     with st.empty():
-#         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
-
-placeholder = st.empty()
 #img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
 img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
@@ -126,5 +123,5 @@ if click:
 
 if st.session_state.show_pic:
     #fake_hit_stab(img_prompt, placeholder)
-    hit_stability(img_prompt, placeholder)
+    hit_stability(img_prompt)
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
