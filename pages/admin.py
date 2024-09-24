@@ -7,6 +7,7 @@ from PIL import Image
 import requests
 import time
 import getpass
+from random import randrange
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
@@ -62,6 +63,7 @@ def get_image(content):
     return BytesIO(content)
 
 def hit_stability(prompt):
+    placeholder.empty()
     params = {
         "prompt" : prompt,
         "aspect_ratio" : "1:1",
@@ -84,11 +86,17 @@ def hit_stability(prompt):
     placeholder = st.image(get_image(output_image), caption=prompt)
 
 def fake_hit_stab(prompt):
+    placeholder.empty()
+    images = ["https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg","https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg"]
+    time.sleep(2)
     placeholder = st.image(
-            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
-            width=400, # Manually Adjust the width of the image as per requirement
+            images[randrange(1)],
             caption=prompt
         )
+    
+if "show_less" not in st.session_state:
+        st.session_state.more_stuff = False
+
 
 # def clear_image():
 #     with st.empty():
