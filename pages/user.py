@@ -32,6 +32,9 @@ temperature = st.sidebar.slider('temperature', min_value=0.01, max_value=5.0, va
 top_p = st.sidebar.slider('top_p', min_value=0.01, max_value=1.0, value=0.9, step=0.01)
 max_length = st.sidebar.slider('max_length', min_value=32, max_value=128, value=120, step=8)
 
+# Create editable hidden prompt
+hidden_prompt = st.text_area("Below is the 'hidden prompt'. This text will be prepended to your regular chat message, entered at the bottom of the page." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
+
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": openers[randrange(2)]}]
@@ -44,8 +47,6 @@ for message in st.session_state.messages:
 def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": openers[randrange(2)]}]
 st.sidebar.button('Restart Chat History', on_click=clear_chat_history)
-
-hidden_prompt = st.text_area("Below is the 'hidden prompt'. This text will be prepended to your regular chat message, entered at the bottom of the page." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
 
 # Function for generating LLaMA2 response. Refactored from https://github.com/a16z-infra/llama2-chatbot
 def generate_llama2_response(prompt_input, hiddenprompt):
