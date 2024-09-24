@@ -18,9 +18,13 @@ if st.session_state.role not in ["admin", "super-admin"]:
 
 st.title("Welcome to the special Picture Page!!")
 
-STABILITY_KEY = getpass('sk-TwfXwLX7lLAK94fLzmrNMdQr6kjOEyObP6uYVzH5a0KZlJuj')
-host = f"https://api.stability.ai/v2beta/stable-image/generate/sd3"
+if 'STABILITY_KEY' in st.secrets:
+    STABILITY_KEY = st.secrets['STABILITY_KEY']
+    st.sidebar.success('API key is good.', icon='✅')
+else:
+    st.sidebar.warning('credentials are not working.', icon='⚠️')
 
+host = f"https://api.stability.ai/v2beta/stable-image/generate/sd3"
 img_prompt = st.text_area("what do you want to see?", "A scarred landscape from above, dotted with Battlemechs in the midst of battle.")
 
 def send_generation_request(host, params,):
