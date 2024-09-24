@@ -45,6 +45,8 @@ def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": openers[randrange(2)]}]
 st.sidebar.button('Restart Chat History', on_click=clear_chat_history)
 
+hidden_prompt = st.text_area("Below is the 'hidden prompt'. This text will be prepended to your regular chat message, entered at the bottom of the page." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
+
 # Function for generating LLaMA2 response. Refactored from https://github.com/a16z-infra/llama2-chatbot
 def generate_llama2_response(prompt_input, hiddenprompt):
     if (hiddenprompt != None):
@@ -60,8 +62,6 @@ def generate_llama2_response(prompt_input, hiddenprompt):
                            input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ",
                                   "temperature":temperature, "top_p":top_p, "max_length":max_length, "repetition_penalty":1})
     return output
-
-hidden_prompt = st.text_area("Change the 'hidden prompt' below. This will be prepended to your regular chat message. " , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
 
 # User-provided prompt
 if prompt := st.chat_input("Type your regular chat message here.", disabled=not replicate_api):
