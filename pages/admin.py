@@ -87,23 +87,24 @@ def hit_stability(prompt, placeholder):
 
 def fake_hit_stab(prompt, placeholder):
     placeholder.empty()
-    images = ["https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg","https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg"]
+    images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
+              "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+              "https://i.ytimg.com/vi/3x0SJ6-LrcA/sddefault.jpg"]
     time.sleep(2)
     placeholder = st.image(
-            images[randrange(1)],
+            images[randrange(2)],
             caption=prompt
         )
     
 if "show_less" not in st.session_state:
         st.session_state.more_stuff = False
 
-
 # def clear_image():
 #     with st.empty():
 #         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
 
 placeholder = st.empty()
-img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
+img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
 #st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab, args=(img_prompt,), use_container_width=False)
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 if click:
