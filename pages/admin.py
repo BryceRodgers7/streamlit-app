@@ -91,8 +91,10 @@ def fake_hit_stab(prompt, placeholder):
               "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
               "https://i.ytimg.com/vi/3x0SJ6-LrcA/sddefault.jpg"]
     time.sleep(2)
+    random_int = randrange(2)
+    st.write(f"random int is {random_int}")
     placeholder = st.image(
-            images[randrange(2)],
+            images[random_int],
             caption=prompt
         )
     
