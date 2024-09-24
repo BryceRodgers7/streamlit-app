@@ -83,16 +83,16 @@ def hit_stability(prompt):
 
     st.image(get_image(output_image), caption=prompt)
 
-def fake_hit_stab(prompt):
-    st.image(
-            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
-            width=400, # Manually Adjust the width of the image as per requirement
-            caption=prompt
-        )
+# def fake_hit_stab(prompt):
+#     st.image(
+#             "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+#             width=400, # Manually Adjust the width of the image as per requirement
+#             caption=prompt
+#         )
 
 def clear_image():
     with st.empty():
         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
 
-st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab(img_prompt), use_container_width=False)
-st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
+st.button("See It!", help="submit your prompt and get an image", on_click=hit_stability(img_prompt), use_container_width=False)
+# st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
