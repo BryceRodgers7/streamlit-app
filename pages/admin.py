@@ -11,6 +11,7 @@ from random import randrange
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
+current_content = []
 
 # Verify the user's role
 if st.session_state.role not in ["user", "admin", "super-admin"]:
@@ -63,8 +64,8 @@ def get_image(content):
     return BytesIO(content)
 
 @st.cache_data
-def get_image_bytes():
-    buf = get_image
+def get_image_bytes(content):
+    buf = get_image(content)
     return buf.getvalue()
 
 
@@ -81,7 +82,7 @@ def hit_stability(prompt, placeholder):
     response = send_generation_request(host,params)
 
     # Decode response
-    output_image = response.content
+    current_content = response.content
     finish_reason = response.headers.get("finish-reason")
     # seed = response.headers.get("seed")
 
@@ -89,7 +90,7 @@ def hit_stability(prompt, placeholder):
     if finish_reason == 'CONTENT_FILTERED':
         raise Warning("Generation failed NSFW classifier")
 
-    placeholder = st.image(get_image(output_image), caption=prompt)
+    placeholder = st.image(get_image(current_content), caption=prompt)
 
 def fake_hit_stab(prompt, placeholder):
     placeholder.empty()
@@ -115,7 +116,7 @@ img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 btn = st.download_button(
       label="Download Image",
-      data=get_image_bytes(),
+      data=get_image_bytes(current_content),
       file_name="imagename.png",
       mime="image/jpeg",
       )
