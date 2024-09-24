@@ -70,6 +70,7 @@ def get_image_bytes(content):
 
 
 def hit_stability(prompt, placeholder):
+    global current_content
     placeholder.empty()
     params = {
         "prompt" : prompt,
