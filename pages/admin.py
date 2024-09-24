@@ -25,7 +25,7 @@ else:
     st.sidebar.warning('credentials are not working.', icon='⚠️')
 
 host = f"https://api.stability.ai/v2beta/stable-image/generate/sd3"
-
+st.session_state.show_pic = False
 
 def send_generation_request(host, params,):
     headers = {
