@@ -4,15 +4,8 @@ import replicate
 import os
 from random import randrange
 
-<<<<<<< HEAD
 menu_with_redirect()
 
-=======
-# Redirect to app.py if not logged in, otherwise show the navigation menu
-menu_with_redirect()
-
-#st.set_page_config(page_title="💬 Pirate Chatbot")
->>>>>>> 3927d5c97c0428619031059a92fb429bbc7b9431
 st.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
 
 # Openers
