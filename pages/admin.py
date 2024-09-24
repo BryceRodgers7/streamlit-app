@@ -12,7 +12,7 @@ import getpass
 menu_with_redirect()
 
 # Verify the user's role
-if st.session_state.role not in ["admin", "super-admin"]:
+if st.session_state.role not in ["user", "admin", "super-admin"]:
     st.warning("You do not have permission to view this page.")
     st.stop()
 
@@ -25,7 +25,7 @@ else:
     st.sidebar.warning('credentials are not working.', icon='⚠️')
 
 host = f"https://api.stability.ai/v2beta/stable-image/generate/sd3"
-img_prompt = st.text_area("what do you want to see?", "A scarred landscape from above, dotted with Battlemechs in the midst of battle.")
+
 
 def send_generation_request(host, params,):
     headers = {
@@ -70,8 +70,6 @@ def hit_stability(prompt):
         "model" : "sd3-medium"
     }
 
-
-
     response = send_generation_request(host,params)
 
     # Decode response
@@ -85,16 +83,19 @@ def hit_stability(prompt):
 
     st.image(get_image(output_image), caption=prompt)
 
-# def fake_hit_stab(prompt):
-#     st.image(
-#             "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
-#             width=400, # Manually Adjust the width of the image as per requirement
-#             caption=prompt
-#         )
+def fake_hit_stab(prompt):
+    placeholder = st.image(
+            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+            width=400, # Manually Adjust the width of the image as per requirement
+            caption=prompt
+        )
 
-def clear_image():
-    with st.empty():
-        st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
+# def clear_image():
+#     with st.empty():
+#         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
 
-st.button("See It!", help="submit your prompt and get an image", on_click=hit_stability, args=(img_prompt,), use_container_width=False)
+placeholder = st.empty()
+img_prompt = st.text_area("What do you want to see?", "A beautiful parrot before a lush background of jungle canopy.")
+st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab, args=(img_prompt,), use_container_width=False)
+    
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
