@@ -1,19 +1,12 @@
 import streamlit as st
 from menu import menu_with_redirect
-
-# Redirect to app.py if not logged in, otherwise show the navigation menu
-menu_with_redirect()
-
-#st.title("This page is available to all users")
-
-
-import streamlit as st
-from menu import menu
 import replicate
 import os
 from random import randrange
 
-# App title
+# Redirect to app.py if not logged in, otherwise show the navigation menu
+menu_with_redirect()
+
 #st.set_page_config(page_title="💬 Pirate Chatbot")
 st.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
 st.markdown(f"You are currently logged in with the role of {st.session_state.role}.")
@@ -22,23 +15,25 @@ st.markdown(f"You are currently logged in with the role of {st.session_state.rol
 openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr matey got a question for me?"]
 
 # Replicate Credentials
+
+st.sidebar.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
 if 'REPLICATE_API_TOKEN' in st.secrets:
-    st.success('API key is good.', icon='✅')
+    st.sidebar.success('API key is good.', icon='✅')
     replicate_api = st.secrets['REPLICATE_API_TOKEN']
 else:
-    st.warning('credentials are not working.', icon='⚠️')
+    st.sidebar.warning('credentials are not working.', icon='⚠️')
 
-st.subheader('Models and parameters')
-selected_model = st.selectbox('Choose a 🦙 Llama2 model', ['Llama2-7B', 'Llama2-13B', 'Mistral-7B'], key='selected_model')
+st.sidebar.subheader('Models and parameters')
+selected_model = st.sidebar.selectbox('Choose a 🦙 Llama2 model', ['Llama2-7B', 'Llama2-13B', 'Mistral-7B'], key='selected_model')
 if selected_model == 'Llama2-7B':
     llm = 'a16z-infra/llama7b-v2-chat:4f0a4744c7295c024a1de15e1a63c880d3da035fa1f49bfd344fe076074c8eea'
 elif selected_model == 'Llama2-13B':
     llm = 'a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5'
 elif selected_model == 'Mistral-7B':
     llm = 'mistralai/mistral-7b-instruct-v0.1:5fe0a3d7ac2852264a25279d1dfb798acbc4d49711d126646594e212cb821749'
-temperature = st.slider('temperature', min_value=0.01, max_value=5.0, value=0.1, step=0.01)
-top_p = st.slider('top_p', min_value=0.01, max_value=1.0, value=0.9, step=0.01)
-max_length = st.slider('max_length', min_value=32, max_value=128, value=120, step=8)
+temperature = st.sidebar.slider('temperature', min_value=0.01, max_value=5.0, value=0.1, step=0.01)
+top_p = st.sidebar.slider('top_p', min_value=0.01, max_value=1.0, value=0.9, step=0.01)
+max_length = st.sidebar.slider('max_length', min_value=32, max_value=128, value=120, step=8)
 
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
