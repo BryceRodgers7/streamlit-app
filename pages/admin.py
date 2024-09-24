@@ -83,4 +83,4 @@ def hit_stability(prompt):
 
     st.image(get_image(output_image), caption=prompt)
 
-st.button("See It!", key=None, help="submit your prompt and get an image", on_click=hit_stability(img_prompt), use_container_width=False)
+st.button("See It!", help="submit your prompt and get an image", on_click=hit_stability(img_prompt), use_container_width=False)
