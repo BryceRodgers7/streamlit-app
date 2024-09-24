@@ -107,6 +107,12 @@ placeholder = st.empty()
 img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
 #st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab, args=(img_prompt,), use_container_width=False)
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
+btn = st.download_button(
+      label="Download Image",
+      data=get_image,
+      file_name="imagename.png",
+      mime="image/jpeg",
+      )
 if click:
     st.session_state.show_pic = True
 
