@@ -114,7 +114,7 @@ img_prompt = st.text_area("What would you like to see?", "A beautiful parrot bef
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 btn = st.download_button(
       label="Download Image",
-      data=get_image_bytes(current_content),
+      data=get_image_bytes(),
       file_name="imagename.png",
       mime="image/jpeg",
       )
