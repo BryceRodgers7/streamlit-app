@@ -111,8 +111,8 @@ if "show_less" not in st.session_state:
 #         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
 
 placeholder = st.empty()
-img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
-#st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab, args=(img_prompt,), use_container_width=False)
+#img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
+img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 btn = st.download_button(
       label="Download Image",
@@ -124,5 +124,6 @@ if click:
     st.session_state.show_pic = True
 
 if st.session_state.show_pic:
-    fake_hit_stab(img_prompt, placeholder)
+    #fake_hit_stab(img_prompt, placeholder)
+    hit_stability(img_prompt, placeholder)
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
