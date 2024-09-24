@@ -83,4 +83,11 @@ def hit_stability(prompt):
 
     st.image(get_image(output_image), caption=prompt)
 
-st.button("See It!", help="submit your prompt and get an image", on_click=hit_stability(img_prompt), use_container_width=False)
+def fake_hit_stab(prompt):
+    st.image(
+            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+            width=400, # Manually Adjust the width of the image as per requirement
+            caption=prompt
+        )
+
+st.button("See It!", help="submit your prompt and get an image", on_click=fake_hit_stab(img_prompt), use_container_width=False)
