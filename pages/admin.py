@@ -62,6 +62,12 @@ def send_generation_request(host, params,):
 def get_image(content):
     return BytesIO(content)
 
+@st.cache_data
+def get_image_bytes():
+    buf = get_image
+    return buf.getvalue()
+
+
 def hit_stability(prompt, placeholder):
     placeholder.empty()
     params = {
@@ -109,7 +115,7 @@ img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 btn = st.download_button(
       label="Download Image",
-      data=get_image,
+      data=get_image_bytes,
       file_name="imagename.png",
       mime="image/jpeg",
       )
