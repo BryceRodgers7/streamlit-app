@@ -62,7 +62,7 @@ def send_generation_request(host, params,):
 def get_image(content):
     return BytesIO(content)
 
-def hit_stability(prompt):
+def hit_stability(prompt, placeholder):
     placeholder.empty()
     params = {
         "prompt" : prompt,
@@ -85,7 +85,7 @@ def hit_stability(prompt):
 
     placeholder = st.image(get_image(output_image), caption=prompt)
 
-def fake_hit_stab(prompt):
+def fake_hit_stab(prompt, placeholder):
     placeholder.empty()
     images = ["https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg","https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg"]
     time.sleep(2)
@@ -110,5 +110,5 @@ if click:
     st.session_state.show_pic = True
 
 if st.session_state.show_pic:
-    fake_hit_stab(img_prompt)
+    fake_hit_stab(img_prompt, placeholder)
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
