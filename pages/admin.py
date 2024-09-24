@@ -96,5 +96,5 @@ def clear_image():
     with st.empty():
         st.image("https://i.sstatic.net/kOnzy.gif", caption="braindead")
 
-st.button("See It!", help="submit your prompt and get an image", on_click=hit_stability, args=img_prompt, use_container_width=False)
+st.button("See It!", help="submit your prompt and get an image", on_click=hit_stability, args=(img_prompt,), use_container_width=False)
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
