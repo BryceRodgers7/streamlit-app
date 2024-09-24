@@ -1,7 +1,6 @@
 import streamlit as st
 from menu import menu_with_redirect
 from io import BytesIO
-import IPython
 import json
 import os
 from PIL import Image
