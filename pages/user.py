@@ -13,7 +13,7 @@ openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr ma
 
 # Replicate Credentials
 
-st.sidebar.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
+st.sidebar.title('Chatbot Control Panel')
 if 'REPLICATE_API_TOKEN' in st.secrets:
     st.sidebar.success('API key is good.', icon='✅')
     replicate_api = st.secrets['REPLICATE_API_TOKEN']
@@ -33,8 +33,8 @@ top_p = st.sidebar.slider('top_p', min_value=0.01, max_value=1.0, value=0.9, ste
 max_length = st.sidebar.slider('max_length', min_value=32, max_value=128, value=120, step=8)
 
 # Create editable hidden prompt
-hidden_prompt = st.text_area("Below is the 'hidden prompt'. This text will be prepended to your regular chat message, entered at the bottom of the page." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
-
+hidden_prompt = st.text_area("Below is the 'hidden prompt'. This will be prepended to your regular chat message." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
+st.divider()
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": openers[randrange(2)]}]
