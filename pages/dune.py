@@ -37,25 +37,26 @@ st.write("  lower-case, remove punctuation, remove stop words, remove non-alphan
 st.write("#4: Create TDF matrix")
 tdf_matrix_code = '''vocabulary = sorted(set(word for doc in preprocessed_corpus for word in doc.split()))
 
-  # start with empty matrix
-  tdf_matrix = np.zeros((len(preprocessed_corpus), len(vocabulary)), dtype=int)
+# start with empty matrix
+tdf_matrix = np.zeros((len(preprocessed_corpus), len(vocabulary)), dtype=int)
 
-  # scan corpus, fill matrix
-  for doc_idx, doc in enumerate(preprocessed_corpus):
-      for term in doc.split():
-          term_idx = vocabulary.index(term)
-          tdf_matrix[doc_idx, term_idx] += 1'''
+# scan corpus, fill matrix
+for doc_idx, doc in enumerate(preprocessed_corpus):
+    for term in doc.split():
+        term_idx = vocabulary.index(term)
+        tdf_matrix[doc_idx, term_idx] += 1'''
 st.code(tdf_matrix_code, language="python")
 
 st.write("#5: Create TF-IDF matrix")
-tfidf_matrix_code = '''# Compute TF matrix (Term Frequency)
-  tf_matrix = tdf_matrix / np.sum(tdf_matrix, axis=1, keepdims=True)
+tfidf_matrix_code = '''# Compute Term Frequency matrix
+tf_matrix = tdf_matrix / np.sum(tdf_matrix, axis=1, keepdims=True)
 
-  # Compute IDF marix (Inverse Document Frequency)
-  num_documents = tdf_matrix.shape[0]
-  idf_vector = np.log(num_documents / np.count_nonzero(tdf_matrix, axis=0))
+# Compute Inverse Document Frequency matrix
+num_documents = tdf_matrix.shape[0]
+idf_vector = np.log(num_documents / np.count_nonzero(tdf_matrix, axis=0))
 
-  tfidf_matrix = tf_matrix * idf_vector'''
+# Compute TF-IDF matrix
+tfidf_matrix = tf_matrix * idf_vector'''
 st.code(tfidf_matrix_code, language="python")
 
 st.write("  we can see that the number of unique words in a corpus will have an impact on the entire matrix (both tdf and tf-idf).")
@@ -66,6 +67,10 @@ document 1 in trilogy scores were ['paul', 'said', 'mother', 'gom', 'jabbar', 'p
 document 1 has delta ['hand', 'pain']'''
 st.code(book1_delta, language="python")
 
-st.write("We can see that they mention 9 of the same top 10 words, but when we examine it as a single chapter of the entire story (as opposed to just the first book), the more significant word is 'pain' not 'hand'.")
-st.write("When we treat the story as literature, this first chapter is about (spoiler!) young Paul's encounter with a mysterious box. When his hand is inside the box it inflicts great pain on him, but as an exercise in self-control he must keep his hand inside the box or die.")
-st.write("The entire trilogy is filled with pain, on a galactic scale, but written using other words such as 'struggle' and 'torment'... and Paul needs to exercise self-control so the reader never forgets about the gom jabbar test, and the pain of that moment test is indeed more relevant than his hand. 	:exploding_head: :astonished: :thought_balloon:")
+st.write("We can see that they mention 9 of the same top 10 words in the first book, but when we examine it as a single chapter out of the entire story (vs just the first book), the more significant word is 'pain' not 'hand'.")
+st.divider()
+st.write("To contextualize this difference from a story-perspective... the first chapter is primarily about (spoiler!) young Paul's encounter with a mysterious box.")
+st.write("When his hand is inside the box it inflicts great pain on him. As an exercise in self-control he must keep his hand inside the box, or immediately die.")
+st.write("The entire trilogy is filled with much more pain - on a galactic scale, but written with other words... such as 'struggle' and 'torment'.")
+st.write("Paul needs to exercise self-control throughout the book, so the reader does not forget about that weird gom jabbar test in the beginning.")
+st.write("To the reader who has finished the story, the pain of that moment in the test is more relevant than his hand. 	:exploding_head: :astonished: :thought_balloon:")
