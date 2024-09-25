@@ -113,12 +113,8 @@ def fake_hit_stab(prompt):
 img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 
-if click:
-    st.session_state.show_pic = True
-    
-if st.session_state.show_pic:
-    #fake_hit_stab(img_prompt, placeholder)
-    hit_stability(img_prompt)
+@st.fragment
+def fragment_function():
     img_BufferedReader = io.BufferedReader(get_image_bytes())
     dl_click = st.download_button(
       label="Download Image",
@@ -126,4 +122,13 @@ if st.session_state.show_pic:
       file_name="imagename.png",
       mime="image/jpeg",
       )
+
+if click:
+    st.session_state.show_pic = True
+    
+if st.session_state.show_pic:
+    #fake_hit_stab(img_prompt, placeholder)
+    hit_stability(img_prompt)
+    fragment_function()
+    
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
