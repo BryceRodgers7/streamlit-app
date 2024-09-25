@@ -114,8 +114,7 @@ img_prompt = st.text_area("What would you like to see?", "A beautiful parrot bef
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 
 @st.fragment
-def fragment_function():
-    img_BufferedReader = io.BufferedReader(get_image_bytes())
+def fragment_function(img_BufferedReader):
     dl_click = st.download_button(
       label="Download Image",
       data=img_BufferedReader,
@@ -129,6 +128,7 @@ if click:
 if st.session_state.show_pic:
     #fake_hit_stab(img_prompt, placeholder)
     hit_stability(img_prompt)
-    fragment_function()
+    img_BufferedReader = io.BufferedReader(get_image_bytes())
+    fragment_function(img_BufferedReader)
     
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
