@@ -115,7 +115,7 @@ click = st.button("See It!", help="submit your prompt and get an image", use_con
 img_BufferedReader = io.BufferedReader(get_image_bytes())
 btn = st.download_button(
       label="Download Image",
-      data=img_BufferedReader(),
+      data=img_BufferedReader,
       file_name="imagename.png",
       mime="image/jpeg",
       )
