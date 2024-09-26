@@ -23,13 +23,14 @@ st.selectbox(
     key="_role",
     on_change=set_role,
 )
+st.write("First up, choose a role so you can visit the rest of the pages")
 menu() # Render the dynamic menu!
 st.subheader("explore the AI using the links below")
-st.write("First up, a Llama Chatbot that thinks he's a pirate!")
+st.write("Check out this Llama Chatbot that thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
-st.write("Next is a page integrated with StabilityAI to make pictures!")
+st.write("Try telling StabilityAI what pictures to make!")
 st.page_link("pages/stability.py", label="Picture Page")
-st.write("And finally a Topic Model of the Dune Trilogy using TF-IDF")
+st.write("Discover the Dune Universe like you've never experienced it before! A Topic Model using TF-IDF.")
 st.page_link("pages/dune.py", label="Dune Universe")
-st.write("But wait, there's more! I found the script for the new Dune film and played around some more!!")
+st.write("But wait, there's more! I even found the script for the new Dune film and preprocessed it until I could make another topic model!!")
 st.page_link("pages/pps.py", label="Dune Movie")
