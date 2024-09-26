@@ -24,7 +24,7 @@ st.selectbox(
     on_change=set_role,
 )
 menu() # Render the dynamic menu!
-st.subtitle("explore the AI using the links below")
+st.subheader("explore the AI using the links below")
 st.write("First up, a Llama Chatbot that thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("Next is a page integrated with StabilityAI to make pictures!")
