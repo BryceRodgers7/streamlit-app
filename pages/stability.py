@@ -11,7 +11,7 @@ from random import randrange
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
-current_content = io.BytesIO()
+# current_content = io.BytesIO()
 
 # Verify the user's role
 if st.session_state.role not in ["user", "admin", "super-admin"]:
@@ -59,23 +59,19 @@ def send_generation_request(host, params,):
 
     return response
 
-def get_image(content):
-    global current_content
-    current_content = io.BytesIO(content)
-    return current_content
+def get_bytes(content):
+    return io.BytesIO(content)
 
-def get_image_bytes():
-    return current_content
+# def get_image_bytes():
+#     return current_content
     
 if "show_pic" not in st.session_state:
-        st.session_state.show_pic = False
+        st.session_state.show_stability = False
 
 placeholder = st.empty()
 
 @st.cache_data
 def hit_stability(prompt):
-    global placeholder
-    placeholder.empty()
     params = {
         "prompt" : prompt,
         "aspect_ratio" : "1:1",
@@ -95,19 +91,12 @@ def hit_stability(prompt):
     if finish_reason == 'CONTENT_FILTERED':
         raise Warning("Generation failed NSFW classifier")
 
-    placeholder = st.image(get_image(content), caption=prompt)
+    return io.BytesIO(content)
 
+# move logic to here later
 def fake_hit_stab(prompt):
-    global placeholder
-    placeholder.empty()
-    images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
-              "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
-              "https://i.ytimg.com/vi/3x0SJ6-LrcA/sddefault.jpg"]
     time.sleep(2)
-    placeholder = st.image(
-            images[randrange(3)],
-            caption=prompt
-        )
+
 
 #img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
 img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
@@ -118,17 +107,31 @@ def fragment_function(img_BufferedReader):
     dl_click = st.download_button(
       label="Download Image",
       data=img_BufferedReader,
-      file_name="imagename.png",
+      file_name="generated_image.png",
       mime="image/jpeg",
       )
 
 if click:
-    st.session_state.show_pic = True
+    st.session_state.show_stability = True
     
-if st.session_state.show_pic:
+if st.session_state.show_stability:
     #fake_hit_stab(img_prompt, placeholder)
-    hit_stability(img_prompt)
-    img_BufferedReader = io.BufferedReader(get_image_bytes())
-    fragment_function(img_BufferedReader)
+    img_bytes = hit_stability(img_prompt)
+    placeholder = st.image(img_bytes, caption=img_prompt)
+else:
+    fake_hit_stab(img_prompt)
+    placeholder = st.image()
+    # replace these with pre-generated images later
+    images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
+              "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+              "https://i.ytimg.com/vi/3x0SJ6-LrcA/sddefault.jpg"]
+    placeholder = st.image(
+            images[randrange(3)],
+            caption="non-generated image"
+        )
+    img_bytes = '' # get img bytes for pregenerated file later
+    
+img_BufferedReader = io.BufferedReader(img_bytes)
+fragment_function(img_BufferedReader)
     
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)

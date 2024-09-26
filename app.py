@@ -15,6 +15,7 @@ def set_role():
     st.session_state.role = st.session_state._role
 
 
+st.title("Bryce's demo site")
 # Selectbox to choose role
 st.selectbox(
     "Select your role:",
@@ -23,3 +24,12 @@ st.selectbox(
     on_change=set_role,
 )
 menu() # Render the dynamic menu!
+st.subtitle("explore the AI using the links below")
+st.write("First up, a Llama Chatbot that thinks he's a pirate!")
+st.page_link("pages/chatbot.py", label="Pirate Chatbot")
+st.write("Next is a page integrated with StabilityAI to make pictures!")
+st.page_link("pages/stability.py", label="Picture Page")
+st.write("And finally a Topic Model of the Dune Trilogy using TF-IDF")
+st.page_link("pages/dune.py", label="Dune Universe")
+st.write("But wait, there's more! I found the script for the new Dune film and played around some more!!")
+st.page_link("pages/pps.py", label="Dune Movie")

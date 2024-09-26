@@ -17,10 +17,10 @@ if st.session_state.role not in ["user", "admin", "super-admin"]:
     st.warning("You do not have permission to view this page.")
     st.stop()
 
-st.title("Duuuuuune!! :sunny: :sunny: :sunny: :hot_face: ")
-st.subheader("Topic Modeling with TF-IDF")
+st.title("Data Collection and Processing")
+st.subheader("Processing, Sanitizing, Tokenizing")
 
-colab = "https://colab.research.google.com/drive/1Y2RtOJvgLY3s_qdehyVJMUYeKwH_aZlM?usp=sharing"
+colab = "https://colab.research.google.com/drive/10XLZlovVfBLhaw60EJtBp2BPvRK2Edsf?usp=sharing"
 st.write("full jupyter notebook found [here](%s)" % colab)
 trilogy = "https://raw.githubusercontent.com/ganesh-k13/shell/master/test_search/www.glozman.com/TextPages/Frank%20Herbert%20-%20Dune.txt"
 st.write("#1: obtain the corpus: [here](%s) the complete Dune Trilogy" % trilogy)

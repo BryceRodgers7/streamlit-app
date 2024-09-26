@@ -4,9 +4,10 @@ import streamlit as st
 def authenticated_menu():
     # Show a navigation menu for authenticated users
     st.sidebar.page_link("app.py", label="UserRole Selection")
-    st.sidebar.page_link("pages/user.py", label="Pirate Chatbot")
-    st.sidebar.page_link("pages/admin.py", label="Picture Page")
+    st.sidebar.page_link("pages/chatbot.py", label="Pirate Chatbot")
+    st.sidebar.page_link("pages/stability.py", label="Picture Page")
     st.sidebar.page_link("pages/dune.py", label="Dune Universe")
+    st.sidebar.page_link("pages/pps.py", label="Dune Movie")
     if st.session_state.role in ["super-admin"]:
         st.sidebar.page_link(
             "pages/super-admin.py",
