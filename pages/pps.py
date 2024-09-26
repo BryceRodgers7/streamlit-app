@@ -27,7 +27,8 @@ st.write("#1: obtain the raw data: [here](%s) the final shooting script for Dune
 
 
 # File path of the PDF file to display (replace with your own file)
-pdf_file = "app/static/dune_one_page.pdf"
+# pdf_file = "app/static/dune_one_page.pdf"
+pdf_file = ".static/dune_one_page.pdf"
 
 # Open the PDF file in binary mode
 with open(pdf_file, "rb") as file:
