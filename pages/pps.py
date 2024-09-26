@@ -1,12 +1,7 @@
 import streamlit as st
 from menu import menu_with_redirect
-import io
-import json
-import os
 from PIL import Image
-import requests
-import time
-import getpass
+import base64
 from random import randrange
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
@@ -33,10 +28,11 @@ pdf_file = ".static/dune_one_page.pdf"
 # Open the PDF file in binary mode
 with open(pdf_file, "rb") as file:
     # Read the PDF file
-    pdf_bytes = file.read()
+    base64_pdf = base64.b64encode(file.read()).decode('utf-8')
+    # pdf_bytes = file.read()
     
 # Display the PDF using an iframe
-st.markdown(f'<iframe src="data:application/pdf;base64,{pdf_bytes.decode("ISO-8859-1")}" width="700" height="800"></iframe>', unsafe_allow_html=True)
+st.markdown(f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="800"></iframe>', unsafe_allow_html=True)
 
 st.write("#2: inspect the data, notice there are 'random' numbers and codes all over the place, plus it has plenty of formatting, deleted scenes and movie-instructions")
 divvy_code = '''chp_start_idx_bk1 = [11, 184, 310, 422, 571, 635, 729, 888, 1010, 1065, 1201, 1278, 1514, 1601, 1651, 2031, 2604, 2780, 2832, 3043, 3252]
