@@ -22,10 +22,22 @@ st.subheader("Processing, Sanitizing, Tokenizing")
 
 colab = "https://colab.research.google.com/drive/10XLZlovVfBLhaw60EJtBp2BPvRK2Edsf?usp=sharing"
 st.write("full jupyter notebook found [here](%s)" % colab)
-trilogy = "https://raw.githubusercontent.com/ganesh-k13/shell/master/test_search/www.glozman.com/TextPages/Frank%20Herbert%20-%20Dune.txt"
-st.write("#1: obtain the corpus: [here](%s) the complete Dune Trilogy" % trilogy)
+movie_script = "https://d2bu9v0mnky9ur.cloudfront.net/academy2021/scripts/duneMxFtT98NYwBsMltl20211109/dune_final_shooting_script_6_19_20.pdf"
+st.write("#1: obtain the raw data: [here](%s) the final shooting script for Dune 2020." % movie_script)
 
-st.write("#2: Divide each book into documents (in this case, by chapter, but you could also divvy by page)")
+
+# File path of the PDF file to display (replace with your own file)
+pdf_file = "app/static/dune_one_page.pdf"
+
+# Open the PDF file in binary mode
+with open(pdf_file, "rb") as file:
+    # Read the PDF file
+    pdf_bytes = file.read()
+    
+# Display the PDF using an iframe
+st.markdown(f'<iframe src="data:application/pdf;base64,{pdf_bytes.decode("ISO-8859-1")}" width="700" height="800"></iframe>', unsafe_allow_html=True)
+
+st.write("#2: inspect the data, notice there are 'random' numbers and codes all over the place, plus it has plenty of formatting, deleted scenes and movie-instructions")
 divvy_code = '''chp_start_idx_bk1 = [11, 184, 310, 422, 571, 635, 729, 888, 1010, 1065, 1201, 1278, 1514, 1601, 1651, 2031, 2604, 2780, 2832, 3043, 3252]
 chp_start_idx_bk2 = [3260, 3334, 3539, 3762, 3976, 4226, 4351, 4510, 4606, 4784, 4907, 5101, 5318, 5616, 5765, 6010 ]
 chp_start_idx_bk3 = [6018, 6162, 6279, 6460, 6621, 6743, 7021, 7236, 7396, 7552, 7689, 8055 ]'''

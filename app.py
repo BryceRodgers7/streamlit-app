@@ -26,7 +26,7 @@ st.selectbox(
 )
 menu() # Render the dynamic menu!
 st.write("Then...")
-st.subheader("Explore AI using the links below")
+st.subheader("Explore my AI using the links below")
 st.write("Check out this Llama Chatbot that thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("Try telling StabilityAI what pictures to make!")
