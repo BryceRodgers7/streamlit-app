@@ -16,6 +16,7 @@ def set_role():
 
 
 st.title("Bryce's demo site")
+st.write("First up, choose a role so you can visit the rest of the pages")
 # Selectbox to choose role
 st.selectbox(
     "Select your role:",
@@ -23,9 +24,9 @@ st.selectbox(
     key="_role",
     on_change=set_role,
 )
-st.write("First up, choose a role so you can visit the rest of the pages")
 menu() # Render the dynamic menu!
-st.subheader("explore the AI using the links below")
+st.write("Then...")
+st.subheader("Explore AI using the links below")
 st.write("Check out this Llama Chatbot that thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("Try telling StabilityAI what pictures to make!")
