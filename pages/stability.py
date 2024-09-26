@@ -65,7 +65,7 @@ def get_bytes(content):
 # def get_image_bytes():
 #     return current_content
     
-if "show_pic" not in st.session_state:
+if "show_stability" not in st.session_state:
         st.session_state.show_stability = False
 
 placeholder = st.empty()
