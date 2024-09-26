@@ -23,16 +23,18 @@ st.write("#1: obtain the raw data: [here](%s) the final shooting script for Dune
 
 # File path of the PDF file to display (replace with your own file)
 # pdf_file = "app/static/dune_one_page.pdf"
-pdf_file = ".static/dune_one_page.pdf"
+# pdf_file = ".static/dune_one_page.png"
 
-# Open the PDF file in binary mode
-with open(pdf_file, "rb") as file:
-    # Read the PDF file
-    base64_pdf = base64.b64encode(file.read()).decode('utf-8')
-    # pdf_bytes = file.read()
+# # Open the PDF file in binary mode
+# with open(pdf_file, "rb") as file:
+#     # Read the PDF file
+#     base64_pdf = base64.b64encode(file.read()).decode('utf-8')
+#     # pdf_bytes = file.read()
+
+st.image(".static/dune_one_page.png", caption="One page of the Dune script")
     
 # Display the PDF using an iframe
-st.markdown(f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="800"></iframe>', unsafe_allow_html=True)
+# st.markdown(f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="800"></iframe>', unsafe_allow_html=True)
 
 st.write("#2: inspect the data, notice there are 'random' numbers and codes all over the place, plus it has plenty of formatting, deleted scenes and movie-instructions")
 divvy_code = '''chp_start_idx_bk1 = [11, 184, 310, 422, 571, 635, 729, 888, 1010, 1065, 1201, 1278, 1514, 1601, 1651, 2031, 2604, 2780, 2832, 3043, 3252]
