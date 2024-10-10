@@ -9,7 +9,7 @@ menu_with_redirect()
 
 st.title('Voyager GPT')
 
-st.subtitle("a bigram GPT built from scratch")
+st.subheader("a bigram GPT built from scratch")
 st.write("note: GPT models require a GPU to generate/predict, but streamlit does not provide GPUs")
 st.write("therefore, generating text (500 characters at a time) requirees ~60 seconds locally. About to find out how long it takes here :)")
 
