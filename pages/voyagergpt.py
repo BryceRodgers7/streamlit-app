@@ -177,38 +177,35 @@ class GPTLanguageModel(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
 
-print('creating empty model')
-
 model = GPTLanguageModel()
 
-print('loading state dict')
-
+start_time = time.time()
 model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu'), weights_only=True))
 model.eval()
 
-# print(sum(p.numel() for p in model.parameters())/1e6, 'M parameters')
+print("--- loading state_dict took %s seconds ---" % (time.time() - start_time))
 
-start_time = time.time()
-print('--- start time %s  ---' % (start_time))
-
-print('generating some text (500 characters)')
-# generate from the model
-context = torch.zeros((1, 1), dtype=torch.long, device=device)
-print(decode(model.generate(context, max_new_tokens=500)[0].tolist()))
-
-print("--- job took %s seconds ---" % (time.time() - start_time))
-start_time = time.time()
-
-print("another sample of 500 characters")
-print('--- start time %s  ---' % (start_time))
-
-print(decode(model.generate(context, max_new_tokens=500)[0].tolist()))
-
-print("--- job took %s seconds ---" % (time.time() - start_time))
-start_time = time.time()
-print("and another!")
-print('--- start time %s  ---' % (start_time))
-
-print(decode(model.generate(context, max_new_tokens=500)[0].tolist()))
-
+st.write("--- loading state_dict took %s seconds ---" % (time.time() - start_time))
 st.write("characters in the voyagerGPT's vocabulary (including 'space' and 'return'): ! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � ")
+st.write(sum(p.numel() for p in model.parameters())/1e6, 'M parameters in this voyagerGPT model!')
+
+context = torch.zeros((1, 1), dtype=torch.long, device=device)
+start_time = time.time()
+st.write('generating some text (500 characters)')
+strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
+st.write(strang)
+st.write("--- generation took %s seconds ---" % (time.time() - start_time))
+
+context = torch.zeros((1, 1), dtype=torch.long, device=device)
+start_time = time.time()
+st.write("another sample of 500 characters")
+strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
+st.write("--- generation took %s seconds ---" % (time.time() - start_time))
+st.write(strang)
+
+context = torch.zeros((1, 1), dtype=torch.long, device=device)
+start_time = time.time()
+st.write("and another!")
+strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
+st.write(strang)
+st.write("--- generation took %s seconds ---" % (time.time() - start_time))
