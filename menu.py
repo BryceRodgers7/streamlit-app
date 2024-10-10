@@ -9,6 +9,7 @@ def authenticated_menu():
     st.sidebar.page_link("pages/dune.py", label="Dune Universe")
     st.sidebar.page_link("pages/pps.py", label="Dune Movie")
     st.sidebar.page_link("pages/warcraft.py", label="Warcraft World")
+    st.sidebar.page_link("pages/voyagergpt.py", label="VoyagerGPT")
     if st.session_state.role in ["super-admin"]:
         st.sidebar.page_link(
             "pages/super-admin.py",
