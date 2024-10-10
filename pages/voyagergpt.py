@@ -183,9 +183,10 @@ model = GPTLanguageModel()
 
 print('loading state dict')
 
-model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu')))
+model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu'), weights_only=True))
+model.eval()
 
-print(sum(p.numel() for p in model.parameters())/1e6, 'M parameters')
+# print(sum(p.numel() for p in model.parameters())/1e6, 'M parameters')
 
 start_time = time.time()
 print('--- start time %s  ---' % (start_time))
