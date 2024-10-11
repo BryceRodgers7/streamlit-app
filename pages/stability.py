@@ -118,6 +118,8 @@ if st.session_state.show_stability:
     #fake_hit_stab(img_prompt, placeholder)
     img_bytes = hit_stability(img_prompt)
     placeholder = st.image(img_bytes, caption=img_prompt)
+    img_BufferedReader = io.BufferedReader(img_bytes)
+    fragment_function(img_BufferedReader)
 else:
     fake_hit_stab(img_prompt)
     # replace these with pre-generated images later
@@ -130,7 +132,6 @@ else:
         )
     img_bytes = '' # get img bytes for pregenerated file later
     
-img_BufferedReader = io.BufferedReader(img_bytes)
-fragment_function(img_BufferedReader)
+
     
 # st.button("clear it!", help="clear the image", on_click=clear_image(), use_container_width=False)
