@@ -120,7 +120,6 @@ if st.session_state.show_stability:
     placeholder = st.image(img_bytes, caption=img_prompt)
 else:
     fake_hit_stab(img_prompt)
-    placeholder = st.image()
     # replace these with pre-generated images later
     images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
               "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
