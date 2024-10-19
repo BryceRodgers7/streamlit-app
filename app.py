@@ -2,9 +2,10 @@ import streamlit as st
 from menu import menu
 
 
-st.title("Data Science Demo - By Bryce Rodgers")
+st.title("Data Science Demo Site")
+st.write("By Bryce Rodgers")
 menu() # Render the dynamic menu!
-st.subheader("Use sidebar, or the below links to navigate around.")
+st.subheader("Navigate using the sidebar, or the below links.")
 st.write("This Llama-2 Chatbot thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("Tell StabilityAI to make a picture for you!")
