@@ -201,9 +201,11 @@ context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
 st.write('generating some text (first 500 characters)')
 strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
-if '\n' in strang or '\r' in strang:
-    st.write("newlines were detected... but apparently not displayed.")
-st.write(strang)
+if '\n' in strang:
+    st.write("newline was detected")
+if '\r' in strang:
+    st.write("return was detected")
+st.markdown(strang)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
