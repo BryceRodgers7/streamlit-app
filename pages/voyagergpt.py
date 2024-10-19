@@ -8,8 +8,8 @@ st.title('Voyager GPT')
 
 st.subheader("a bigram GPT built from scratch")
 st.write("note: GPTs require matrix multiplication to generate content, but streamlit does not provide GPUs.")
-st.write("So this page will take a bit longer than the others.")
-st.write("generating text (500 characters at a time) requirees ~20 seconds in this environment.")
+st.write("This page will take a bit longer than the others.")
+st.write("Creating text (500 characters at a time) requires up to 50 seconds in this environment.")
 st.write("Please be patient while it loads!")
 start_time = time.time()
 
@@ -195,12 +195,14 @@ st.write("--- page load took %s seconds ---" % (time.time() - start_time))
 
 st.write("VoyagerGPT's vocabulary includes the below characters (plus 'space' and 'return'): ")
 st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � ")
-st.write(sum(p.numel() for p in model.parameters())/1e6, 'M parameters in this VoyagerGPT model!')
+st.write('This GPT uses over 10 Million parameters.')
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
-st.write('generating some text (500 characters)')
+st.write('generating some text (first 500 characters)')
 strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
+if '\n' in strang or '\r' in strang:
+    st.write("newlines were detected... but apparently not displayed.")
 st.write(strang)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 
