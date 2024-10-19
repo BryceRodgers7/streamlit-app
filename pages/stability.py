@@ -19,6 +19,7 @@ if st.session_state.role not in ["user", "admin", "super-admin"]:
     st.stop()
 
 st.title("Welcome to the special Picture Page!!")
+st.write("please note that each submission costs 25 cents so don't go crazy lol")
 
 if 'STABILITY_KEY' in st.secrets:
     STABILITY_KEY = st.secrets['STABILITY_KEY']

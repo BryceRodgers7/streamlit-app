@@ -1,8 +1,5 @@
 import streamlit as st
 from menu import menu_with_redirect
-import torch
-import torch.nn as nn
-from torch.nn import functional as F
 import time
 
 menu_with_redirect()
@@ -10,8 +7,15 @@ menu_with_redirect()
 st.title('Voyager GPT')
 
 st.subheader("a bigram GPT built from scratch")
-st.write("note: GPT models require a GPU to generate/predict, but streamlit does not provide GPUs")
-st.write("therefore, generating text (500 characters at a time) requirees ~60 seconds locally. About to find out how long it takes here :)")
+st.write("note: GPTs require matrix multiplication to generate content, but streamlit does not provide GPUs.")
+st.write("So this page will take a bit longer than the others.")
+st.write("generating text (500 characters at a time) requirees ~20 seconds in this environment.")
+st.write("Please be patient while it loads!")
+start_time = time.time()
+
+import torch
+import torch.nn as nn
+from torch.nn import functional as F
 
 PATH = './.static/models/voyagerModel.pth'
 
@@ -183,15 +187,15 @@ class GPTLanguageModel(nn.Module):
 
 model = GPTLanguageModel()
 
-start_time = time.time()
+
 model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu'), weights_only=True))
 model.eval()
 
-print("--- loading state_dict took %s seconds ---" % (time.time() - start_time))
+st.write("--- page load took %s seconds ---" % (time.time() - start_time))
 
-st.write("--- loading state_dict took %s seconds ---" % (time.time() - start_time))
-st.write("characters in the voyagerGPT's vocabulary (including 'space' and 'return'): ! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � ")
-st.write(sum(p.numel() for p in model.parameters())/1e6, 'M parameters in this voyagerGPT model!')
+st.write("VoyagerGPT's vocabulary includes the below characters (plus 'space' and 'return'): ")
+st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � ")
+st.write(sum(p.numel() for p in model.parameters())/1e6, 'M parameters in this VoyagerGPT model!')
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
@@ -202,14 +206,14 @@ st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
-st.write("another sample of 500 characters")
+st.write("generating some more text...")
 strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 st.write(strang)
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
-st.write("and another!")
+st.write("generating text one last time!")
 strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
 st.write(strang)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))

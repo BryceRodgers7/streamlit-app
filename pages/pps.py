@@ -32,11 +32,7 @@ st.write("  lower-case, remove punctuation, remove stop words, remove non-alphan
 st.write("This corpus has some text that should be removed outright. We begin step #3 in production by removing/replacing it, however in practice we may want to perform some sanitizing steps earlier, even before divvy.")
 st.write("This makes manual examination of the text in practice much easier.")
 st.write("We just have to be careful not to clean up the page numbers or scene codes until after we had a chance to use them to perform the divvy.")
-fix_cases_code = '''# remove title page and cut-scene from the dataset
-page_0 = "DUNE\nScreenplay by\nJON SPAIHTS and DENIS VILLENEUVE \nand ERIC ROTH  \nBased on the novel  'Dune' by FRANK HERBERT  \nJune 19, 2020  Salmon \nRevisions\nFinal Shooting DraftTITLES ON BLACK, APPEARING ONE AFTER THE OTHER *\nPrologue about SPICE TBD *\nFADE IN: *\nDREAM SEQUENCE: EXT. ARRAKIS - END OF DAY 1 1"
-preprocessed_text = text.replace(page_0, "")
-
-# remove revision-notes from dataset
+fix_cases_code = '''# remove revision-notes from dataset
 pattern = r'Salmon Rev\. \(\d{2}\/\d{2}\/\d{4}\)'
 preprocessed_text = re.sub(pattern, "", preprocessed_text)
 pattern = r'Salmon Rev\. \(\d{2}\/\d{2}\/\d{2}\)'

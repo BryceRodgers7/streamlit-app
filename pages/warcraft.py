@@ -6,7 +6,11 @@ from random import randrange
 
 menu_with_redirect()
 
+
+
 st.title('Warcraft Factions')
+
+st.write("TODO: add an upload button here to check if an image file is a Footie, Grunt, Ghoul, or NE Archer.")
 
 st.write("Human Footman")
 st.image('./.static/footman.jpg')
