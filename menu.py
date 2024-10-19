@@ -13,8 +13,6 @@ def authenticated_menu():
 
 
 
-
-
 def menu():
     # Determine if a user is logged in or not, then show the correct
     # navigation menu

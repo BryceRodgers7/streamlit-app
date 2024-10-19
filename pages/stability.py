@@ -13,10 +13,6 @@ from random import randrange
 menu_with_redirect()
 # current_content = io.BytesIO()
 
-# Verify the user's role
-if st.session_state.role not in ["user", "admin", "super-admin"]:
-    st.warning("You do not have permission to view this page.")
-    st.stop()
 
 st.title("Welcome to the special Picture Page!!")
 st.write("please note that each submission costs 25 cents so don't go crazy lol")
