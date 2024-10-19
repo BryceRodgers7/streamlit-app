@@ -3,7 +3,7 @@ import streamlit as st
 
 def authenticated_menu():
     # Show a navigation menu for authenticated users
-    st.sidebar.page_link("app.py", label="UserRole Selection")
+    st.sidebar.page_link("app.py", label="Homepage")
     st.sidebar.page_link("pages/chatbot.py", label="Pirate Chatbot")
     st.sidebar.page_link("pages/stability.py", label="Picture Page")
     st.sidebar.page_link("pages/voyagergpt.py", label="VoyagerGPT")
