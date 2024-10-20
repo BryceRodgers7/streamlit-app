@@ -8,6 +8,7 @@ menu() # Render the dynamic menu!
 
 st.session_state.role = "user"
 
+
 st.subheader("Navigate using the sidebar, or the links below")
 st.write("This Llama-2 Chatbot thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")

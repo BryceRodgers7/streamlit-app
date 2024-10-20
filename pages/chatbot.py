@@ -11,6 +11,10 @@ st.title('💬 Pirate Chatbot\n(By Bryce Rodgers)')
 # Openers
 openers = ["Yaarg! Whachya need buckaroo?", "Arrr, ya need somethin'?", "Yarr matey got a question for me?"]
 
+if "role" not in st.session_state:
+    st.session_state.role = "user"
+
+
 # Replicate Credentials
 
 st.sidebar.title('Chatbot Control Panel')
