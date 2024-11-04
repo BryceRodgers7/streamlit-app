@@ -6,11 +6,8 @@ menu_with_redirect()
 
 st.title('Voyager GPT')
 
-st.subheader("a bigram GPT built from scratch")
-st.write("note: GPTs require matrix multiplication to generate content, but streamlit does not provide GPUs.")
-st.write("This page will take a bit longer than the others.")
-st.write("Creating text (500 characters at a time) requires up to 50 seconds in this environment.")
-st.write("Please be patient while it loads!")
+st.subheader("A bigram GPT built from scratch!")
+st.write("Note: this page will take a bit longer than the others, because Transformers require matrix multiplication to make 'predictions' and streamlit does not provide GPUs. ")
 start_time = time.time()
 
 import torch
@@ -20,14 +17,14 @@ from torch.nn import functional as F
 PATH = './.static/models/voyagerModel.pth'
 
 # hyperparameters
-batch_size = 64 # how many independent sequences will we process in parallel?
+# batch_size = 64 # how many independent sequences will we process in parallel?
 block_size = 256 # what is the maximum context length for predictions?
-max_iters = 5000
-eval_interval = 500
-learning_rate = 3e-4
+# max_iters = 5000
+# eval_interval = 500
+# learning_rate = 3e-4
 device = 'cpu'
 print(f"running job on {device} because we aren't doing any training!!")
-eval_iters = 200
+# eval_iters = 200
 n_embd = 384
 n_head = 6
 n_layer = 6
@@ -191,33 +188,36 @@ model = GPTLanguageModel()
 model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu'), weights_only=True))
 model.eval()
 
-st.write("--- page load took %s seconds ---" % (time.time() - start_time))
+# st.write("--- page load took %s seconds ---" % (time.time() - start_time))
 
-st.write("VoyagerGPT's vocabulary includes the below characters (plus 'space' and 'return'): ")
-st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � ")
-st.write('This GPT uses over 10 Million parameters.')
+github = "https://github.com/BryceRodgers7/VoyagerGPT"
+st.write("VoyagerGPT can be found [here](%s) uses over 10M parameters, and its vocabulary/tokens come from the below chars:" % github)
+st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � (and 'space' and 'return')")
+
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
-st.write('generating some text (first 500 characters)')
-strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
+st.write('generating some text (first 100 characters)')
+strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
 if '\n' in strang:
     st.write("newline was detected")
+    strang = strang.replace('\n', '<br>')
 if '\r' in strang:
     st.write("return was detected")
+    strang = strang.replace('\r', '<br>')
 st.markdown(strang)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
 st.write("generating some more text...")
-strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
+strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
+st.markdown(strang)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
-st.write(strang)
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
 st.write("generating text one last time!")
-strang = decode(model.generate(context, max_new_tokens=500)[0].tolist())
-st.write(strang)
+strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
+st.markdown(strang)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
