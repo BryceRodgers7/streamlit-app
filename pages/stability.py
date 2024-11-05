@@ -15,7 +15,7 @@ menu_with_redirect()
 
 
 st.title("Welcome to the special Picture Page!!")
-st.write("please note that each submission costs 25 cents so don't go crazy lol")
+st.write("please note that each submission costs 25 cents, so don't go crazy lol!")
 
 if 'STABILITY_KEY' in st.secrets:
     STABILITY_KEY = st.secrets['STABILITY_KEY']
@@ -97,6 +97,7 @@ def fake_hit_stab(prompt):
 
 #img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
 img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
+st.divider()
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 
 @st.fragment
@@ -118,6 +119,7 @@ if st.session_state.show_stability:
     img_BufferedReader = io.BufferedReader(img_bytes)
     fragment_function(img_BufferedReader)
 else:
+    st.write('sample image...')
     fake_hit_stab(img_prompt)
     # replace these with pre-generated images later
     images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
