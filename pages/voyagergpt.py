@@ -1,6 +1,9 @@
 import streamlit as st
 from menu import menu_with_redirect
 import time
+import torch
+import torch.nn as nn
+from torch.nn import functional as F
 
 menu_with_redirect()
 
@@ -8,12 +11,12 @@ st.title('Voyager GPT')
 
 st.subheader("A bigram GPT built from scratch!")
 st.write("Note: this page will take a bit longer than the others, because Transformers require matrix multiplication to make 'predictions' and streamlit does not provide GPUs. ")
-start_time = time.time()
 
-import torch
-import torch.nn as nn
-from torch.nn import functional as F
+st.sidebar.title('VoyagerGPT Panel')
+input_seed = st.sidebar.number_input("seed number", step=1, value=1337)
+temperature = st.sidebar.slider('temperature', min_value=0.01, max_value=1.0, value=0.1, step=0.01)
 
+# start_time = time.time()
 PATH = './.static/models/voyagerModel.pth'
 
 # hyperparameters
@@ -45,6 +48,11 @@ stoi = { ch:i for i,ch in enumerate(chars) }
 itos = { i:ch for i,ch in enumerate(chars) }
 encode = lambda s: [stoi[c] for c in s] # encoder: take a string, output a list of integers
 decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
+
+def apply_temperature(logits, temperature):
+    if temperature != 1.0:
+        logits = logits / temperature
+    return logits
 
 class Head(nn.Module):
     """ one head of self-attention """
@@ -162,7 +170,7 @@ class GPTLanguageModel(nn.Module):
             loss = F.cross_entropy(logits, targets)
 
         return logits, loss
-
+    
     def generate(self, idx, max_new_tokens):
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
@@ -172,6 +180,8 @@ class GPTLanguageModel(nn.Module):
             logits, loss = self(idx_cond)
             # focus only on the last time step
             logits = logits[:, -1, :] # becomes (B, C)
+            # apply temperature to get more randomness
+            logits = apply_temperature(logits, temperature)
             # apply softmax to get probabilities
             probs = F.softmax(logits, dim=-1) # (B, C)
             # sample from the distribution
@@ -190,12 +200,9 @@ st.write("VoyagerGPT has over 10M parameters. Below are the chars in its vocabul
 st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � (and 'space' and 'return')")
 st.divider()
 
-st.sidebar.title('VoyagerGPT Panel')
-input_seed = st.sidebar.number_input("seed number", step=1, value=1337)
-
 if st.button("Generate some Star Trek text!!"):
     torch.manual_seed(input_seed)
-    st.write(f"this will take a moment... using seed {input_seed}")
+    st.write(f"generating with seed {input_seed}... just a moment")
     context = torch.zeros((1, 1), dtype=torch.long, device=device)
     start_time = time.time()    
     strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
