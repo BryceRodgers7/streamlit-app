@@ -201,23 +201,26 @@ st.write('generating some text (first 100 characters)')
 strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
 if '\n' in strang:
     st.write("newline was detected")
-    strang = strang.replace('\n', '<br>')
-if '\r' in strang:
-    st.write("return was detected")
-    strang = strang.replace('\r', '<br>')
-st.markdown(strang)
+    strang = '<p>' + strang.replace('\n', '<br>') + '</p>'
+st.markdown(strang, unsafe_allow_html=True)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
 st.write("generating some more text...")
 strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
-st.markdown(strang)
+if '\n' in strang:
+    st.write("newline was detected")
+    strang = '<p>' + strang.replace('\n', '<br>') + '</p>'
+st.markdown(strang, unsafe_allow_html=True)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
 
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 start_time = time.time()
 st.write("generating text one last time!")
 strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
-st.markdown(strang)
+if '\n' in strang:
+    st.write("newline was detected")
+    strang = '<p>' + strang.replace('\n', '<br>') + '</p>'
+st.markdown(strang, unsafe_allow_html=True)
 st.write("--- generation took %s seconds ---" % (time.time() - start_time))
