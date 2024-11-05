@@ -31,8 +31,6 @@ n_layer = 6
 dropout = 0.2
 # ------------
 
-# torch.manual_seed(1337)
-
 # vocab = ['\n', ' ', '!', '\#', '&', '\'', '(', ')', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '?', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '®', '�']
 
 # # here are all the unique characters that occur in this text
@@ -188,14 +186,17 @@ model = GPTLanguageModel()
 model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu'), weights_only=True))
 model.eval()
 
-github = "https://github.com/BryceRodgers7/VoyagerGPT"
-st.write("VoyagerGPT can be found [here](%s) uses over 10M parameters, and its vocabulary/tokens come from the below chars:" % github)
+st.write("VoyagerGPT has over 10M parameters. Below are the chars in its vocabulary:")
 st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] _ a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ® � (and 'space' and 'return')")
-
+st.divider()
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
+
+st.sidebar.title('VoyagerGPT Seed Number')
+input_seed = st.sidebar.number_input(1337)
 
 if st.button("Generate some Star Trek text!!"):
     start_time = time.time()
+    torch.manual_seed(input_seed)
     strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())
     strang = '<p>' + strang.replace('\n', '<br>') + '</p>'
     st.markdown(strang, unsafe_allow_html=True)
