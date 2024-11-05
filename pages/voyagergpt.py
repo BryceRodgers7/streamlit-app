@@ -191,8 +191,8 @@ st.write("! # & ' ( ) + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < ? A B C D E F G H I J 
 st.divider()
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 
-st.sidebar.title('VoyagerGPT Seed # Panel')
-input_seed = st.sidebar.number_input("seed number")
+st.sidebar.title('VoyagerGPT Panel')
+input_seed = st.sidebar.number_input("seed number", step=1, value=1337)
 
 if st.button("Generate some Star Trek text!!"):
     start_time = time.time()
