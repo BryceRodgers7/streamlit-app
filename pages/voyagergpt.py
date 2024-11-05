@@ -180,7 +180,7 @@ class GPTLanguageModel(nn.Module):
             logits, loss = self(idx_cond)
             # focus only on the last time step
             logits = logits[:, -1, :] # becomes (B, C)
-            # apply temperature to get more randomness
+            # apply temperature to get randomness
             logits = apply_temperature(logits, temperature)
             # apply softmax to get probabilities
             probs = F.softmax(logits, dim=-1) # (B, C)
@@ -191,7 +191,6 @@ class GPTLanguageModel(nn.Module):
         return idx
 
 model = GPTLanguageModel()
-
 
 model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu'), weights_only=True))
 model.eval()
