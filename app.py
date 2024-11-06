@@ -7,10 +7,10 @@ menu() # Render the dynamic menu!
 
 
 
-st.write("choose a role ffs")
+# st.write("choose a role ffs")
 # Initialize st.session_state.role to None
 if "role" not in st.session_state:
-    st.session_state.role = None
+    st.session_state.role = 'user'
 # Retrieve the role from Session State to initialize the widget
 st.session_state._role = st.session_state.role
 
@@ -19,12 +19,12 @@ def set_role():
     st.session_state.role = st.session_state._role
 
 # Selectbox to choose role
-st.selectbox(
-    "Select your role:",
-    [None, "user", "admin", "super-admin"],
-    key="_role",
-    on_change=set_role,
-)
+# st.selectbox(
+#     "Select your role:",
+#     [None, "user", "admin", "super-admin"],
+#     key="_role",
+#     on_change=set_role,
+# )
 
 
 
