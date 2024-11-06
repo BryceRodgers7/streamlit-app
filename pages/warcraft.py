@@ -32,7 +32,7 @@ captions = ["Footman", "Grunt", "Ghoul", "Night Elf Archer"]
 # Call the function with the images you want to display side-by-side
 display_images_side_by_side(image_paths, captions)
 
-uploaded_file = st.file_uploader("Upload an image (to determine if it resembles what you see in the roster)", type=['jpg', 'jpeg', 'png'])
+uploaded_file = st.file_uploader("Upload an image (to determine if it resembles anything in the roster)", type=['jpg', 'jpeg', 'png'])
 
 if uploaded_file is not None:
     # Display the uploaded image
