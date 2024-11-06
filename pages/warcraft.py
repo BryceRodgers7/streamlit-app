@@ -17,7 +17,7 @@ model = load_model()
 
 st.title('Warcraft Factions')
 st.subheader('The Roster')
-st.write('in warcraft, each faction has a basic type of soldier that makes up the bulk of their army')
+st.write('In warcraft, each faction has a basic type of soldier that makes up the bulk of their numbers')
 
 def display_images_side_by_side(image_paths, captions, width=150):  
     # Create columns based on the number of images
