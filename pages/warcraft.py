@@ -15,7 +15,8 @@ def load_model():
 
 model = load_model()
 
-st.title('The Roster of Warcraft World')
+st.title('Warcraft Factions')
+st.subheader('the roster')
 
 def display_images_side_by_side(image_paths, captions, width=150):  
     # Create columns based on the number of images

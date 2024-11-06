@@ -6,8 +6,6 @@ st.subheader('Data Science Demo Site')
 # st.write("By Bryce Rodgers")
 menu() # Render the dynamic menu!
 
-
-
 # st.write("choose a role ffs")
 # Initialize st.session_state.role to None
 if "role" not in st.session_state:
