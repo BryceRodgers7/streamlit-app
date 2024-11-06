@@ -16,6 +16,8 @@ menu_with_redirect()
 
 st.title("Welcome to the special Picture Page!!")
 st.write("please note that each submission costs 25 cents, so don't go crazy lol!")
+parrot_path = './.static/footman.jpg'
+parrot_caption = 'A beautiful parrot before a lush background of jungle canopy.'
 
 if 'STABILITY_KEY' in st.secrets:
     STABILITY_KEY = st.secrets['STABILITY_KEY']
@@ -91,12 +93,12 @@ def hit_stability(prompt):
     return io.BytesIO(content)
 
 # move logic to here later
-def fake_hit_stab(prompt):
-    time.sleep(2)
+def fake_hit_stab():
+    time.sleep(1)
 
 
 #img_prompt = st.text_area("What would you like to see? RANDOM IMAGES ENABLED", "A beautiful parrot before a lush background of jungle canopy.")
-img_prompt = st.text_area("What would you like to see?", "A beautiful parrot before a lush background of jungle canopy.")
+img_prompt = st.text_area("What would you like to see?", parrot_caption)
 st.divider()
 click = st.button("See It!", help="submit your prompt and get an image", use_container_width=False)
 
@@ -119,16 +121,9 @@ if st.session_state.show_stability:
     img_BufferedReader = io.BufferedReader(img_bytes)
     fragment_function(img_BufferedReader)
 else:
-    st.write('sample image...')
-    fake_hit_stab(img_prompt)
-    # replace these with pre-generated images later
-    images = ["https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/637627ca9eebde45ae5f394c_Underwater-Nun.jpeg", 
-              "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
-              "https://i.ytimg.com/vi/3x0SJ6-LrcA/sddefault.jpg"]
-    placeholder = st.image(
-            images[randrange(3)],
-            caption="non-generated image"
-        )
+    # st.write('sample image...')
+    fake_hit_stab()
+    placeholder = st.image(parrot_path, caption=parrot_caption)
     img_bytes = '' # get img bytes for pregenerated file later
     
 
