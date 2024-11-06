@@ -1,8 +1,8 @@
 import streamlit as st
 from menu import menu
 
-st.title("Data Science Demo Site")
-st.write("By Bryce Rodgers")
+st.title("Bryce Rodgers' Data Science Demo Site")
+# st.write("By Bryce Rodgers")
 menu() # Render the dynamic menu!
 
 
