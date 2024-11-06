@@ -15,7 +15,7 @@ def load_model():
 
 model = load_model()
 
-st.title('Warcraft Factions')
+st.title('The Roster of Warcraft World')
 
 def display_images_side_by_side(image_paths, captions, width=150):  
     # Create columns based on the number of images
@@ -26,13 +26,13 @@ def display_images_side_by_side(image_paths, captions, width=150):
         with col:
             st.image(img, caption=caption, use_column_width=False, width=width)
 
-st.write("The Warcraft Roster")
+# st.write("The Roster of Warcraft World")
 image_paths = ["./.static/footman.jpg", "./.static/grunt.jpg", "./.static/ghoul.jpg", "./.static/nearcher.jpg"]
 captions = ["Footman", "Grunt", "Ghoul", "Night Elf Archer"]
 # Call the function with the images you want to display side-by-side
 display_images_side_by_side(image_paths, captions)
 
-uploaded_file = st.file_uploader("Upload an image to determine if it resembles what you see on the roster", type=['jpg', 'jpeg', 'png'])
+uploaded_file = st.file_uploader("Upload an image (to determine if it resembles what you see in the roster)", type=['jpg', 'jpeg', 'png'])
 
 if uploaded_file is not None:
     # Display the uploaded image
