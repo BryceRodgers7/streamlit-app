@@ -32,7 +32,7 @@ st.markdown("<p style='font-size:20px; font-weight:bold;'>Navigate using the sid
 st.divider()
 # st.write("Navigate using the sidebar, or the links below")
 st.page_link("pages/aboutme.py", label="About Me")
-st.write("a quick blurb about me, and what I'm doing with this website!")
+st.write("A quick blurb about me, and what I'm doing with this website!")
 
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("This Llama-2 Chatbot thinks he's a pirate!")
