@@ -41,10 +41,10 @@ st.page_link("pages/stability.py", label="Picture Page")
 st.write("Tell StabilityAI to make a picture for you!")
 
 st.page_link("pages/voyagergpt.py", label="VoyagerGPT")
-st.write("Generate a Star Trek script using VoyagerGPT!")
+st.write("Generate a Star Trek script using my very own VoyagerGPT!")
 
 st.page_link("pages/warcraft.py", label="Warcraft World")
-st.write("Familiarize yourself with different warriors in the world of Warcraft!")
+st.write("Familiarize yourself with different warriors from the World of Warcraft!")
 
 st.page_link("pages/dune.py", label="Dune Universe")
 st.write("Discover the Dune Universe like you've never experienced it before!... A Topic Model using TF-IDF.")
