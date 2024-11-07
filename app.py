@@ -29,8 +29,6 @@ def set_role():
 
 st.markdown("<p style='font-size:20px; font-weight:bold;'>Navigate using the sidebar, or the links below</p>", unsafe_allow_html=True)
 
-
-
 st.divider()
 # st.write("Navigate using the sidebar, or the links below")
 st.page_link("pages/aboutme.py", label="About Me")
