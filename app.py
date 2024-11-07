@@ -1,17 +1,19 @@
 import streamlit as st
 from menu import menu
 
-st.title("Bryce Rodgers'")
-st.subheader('Data Science Demo Site')
+st.title("Bryce Rodgers")
+st.subheader('Data Science Demo Site!')
+
+if "role" not in st.session_state:
+    st.session_state.role = 'user'
+# Retrieve the role from Session State to initialize the widget
+st.session_state._role = st.session_state.role
+
 # st.write("By Bryce Rodgers")
 menu() # Render the dynamic menu!
 
 # st.write("choose a role ffs")
 # Initialize st.session_state.role to None
-if "role" not in st.session_state:
-    st.session_state.role = 'user'
-# Retrieve the role from Session State to initialize the widget
-st.session_state._role = st.session_state.role
 
 def set_role():
     # Callback function to save the role selection to Session State
@@ -27,7 +29,11 @@ def set_role():
 
 st.markdown("<p style='font-size:20px; font-weight:bold;'>Navigate using the sidebar, or the links below</p>", unsafe_allow_html=True)
 
+st.page_link("pages/aboutme.py", label="About Me")
+
+st.divider()
 # st.write("Navigate using the sidebar, or the links below")
+
 st.write("This Llama-2 Chatbot thinks he's a pirate!")
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("Tell StabilityAI to make a picture for you!")

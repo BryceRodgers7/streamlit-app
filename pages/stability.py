@@ -16,7 +16,7 @@ menu_with_redirect()
 
 st.title("Welcome to the special Picture Page!!")
 st.write("please note that each submission costs 25 cents, so don't go crazy lol!")
-parrot_path = './.static/footman.jpg'
+parrot_path = './.static/parrot.jpg'
 parrot_caption = 'A beautiful parrot before a lush background of jungle canopy.'
 
 if 'STABILITY_KEY' in st.secrets:
