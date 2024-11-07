@@ -10,7 +10,11 @@ menu_with_redirect()
 st.title('Voyager GPT')
 
 st.subheader("A bigram GPT built from scratch!")
-st.write("Note: this page will take a bit longer than the others, because Transformers require matrix multiplication to make 'predictions' and streamlit does not provide GPUs. ")
+
+github = "https://github.com/BryceRodgers7/VoyagerGPT"
+st.write("View the code [here](%s)" % github)
+
+st.write("Note: this page will take a bit longer than the others, because Transformers require matrix multiplication to generate (make predictions) and streamlit does not provide GPUs. ")
 
 st.sidebar.title('VoyagerGPT Panel')
 input_seed = st.sidebar.number_input("seed number", step=1, value=1337)
