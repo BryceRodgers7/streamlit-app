@@ -30,11 +30,11 @@ def display_images_side_by_side(image_paths, captions, width=150):
 
 # st.write("The Roster of Warcraft World")
 image_paths = ["./.static/footman.jpg", "./.static/grunt.jpg", "./.static/ghoul.jpg", "./.static/nearcher.jpg"]
-captions = ["Footman", "Grunt", "Ghoul", "Night Elf Archer"]
+captions = ["Human Footman", "Orc Grunt", "Undead Ghoul", "Night Elf Archer"]
 # Call the function with the images you want to display side-by-side
 display_images_side_by_side(image_paths, captions)
 
-uploaded_file = st.file_uploader("Upload an image (to determine if it resembles anything in the roster)", type=['jpg', 'jpeg', 'png'])
+uploaded_file = st.file_uploader("Upload an image to determine which warcraft roster it most resembles", type=['jpg', 'jpeg', 'png'])
 
 if uploaded_file is not None:
     # Display the uploaded image
@@ -49,4 +49,4 @@ if uploaded_file is not None:
     st.write(f"Prediction: {pred}")
     st.write(f"Confidence: {probs[pred_idx]:.4f}")
 else:
-    st.write("Please upload an image to classify.")
+    st.write("awaiting uploaded image")

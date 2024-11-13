@@ -12,9 +12,9 @@ st.title("Data Collection and Processing")
 st.subheader("Processing, Sanitizing, Tokenizing")
 
 colab = "https://colab.research.google.com/drive/10XLZlovVfBLhaw60EJtBp2BPvRK2Edsf?usp=sharing"
-st.write("full jupyter notebook found [here](%s)" % colab)
+st.write("Complete jupyter notebook found [here](%s)" % colab)
 movie_script = "https://d2bu9v0mnky9ur.cloudfront.net/academy2021/scripts/duneMxFtT98NYwBsMltl20211109/dune_final_shooting_script_6_19_20.pdf"
-st.write("#1: Obtain the raw data: [here](%s) the final shooting script for Dune 2020." % movie_script)
+st.write("#1: Obtain the raw data: [here](%s) (the final shooting script for Dune 2020)." % movie_script)
 st.write("Notice there are random numbers and alphanumeric codes on every page, plus plenty of formatting, deleted scenes, and movie-instructions")
 st.image(".static/dune_one_page.png", caption="One page of the Dune script")
 st.write("When we extract the raw text from it, the random noise looks even worse.")

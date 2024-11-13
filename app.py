@@ -3,7 +3,7 @@ from menu import menu
 
 st.title("Bryce Rodgers")
 st.subheader('Data Science Demo Site!')
-st.divider()
+# st.divider()
 if "role" not in st.session_state:
     st.session_state.role = 'user'
 # Retrieve the role from Session State to initialize the widget
@@ -29,8 +29,8 @@ def set_role():
 
 # use one of these 3
 st.write("Welcome! Explore this website by using the sidebar, or the links below")
-st.markdown("<p style='font-size:20px; font-weight:bold;'>Welcome! Explore this website by using the sidebar, or the links below</p>", unsafe_allow_html=True)
-st.markdown("<p style='font-size:20px; font-weight:bold;'>Navigate using the sidebar, or the links below</p>", unsafe_allow_html=True)
+# st.markdown("<p style='font-size:20px; font-weight:bold;'>Welcome! Explore this website by using the sidebar, or the links below</p>", unsafe_allow_html=True)
+# st.markdown("<p style='font-size:20px; font-weight:bold;'>Navigate using the sidebar, or the links below</p>", unsafe_allow_html=True)
 
 st.divider()
 # st.write("Navigate using the sidebar, or the links below")
@@ -40,8 +40,8 @@ st.divider()
 st.page_link("pages/chatbot.py", label="Pirate Chatbot")
 st.write("This Llama-2 Chatbot thinks he's a pirate!")
 st.divider()
-st.page_link("pages/stability.py", label="Picture Page")
-st.write("Tell StabilityAI to make a picture for you!")
+st.page_link("pages/stability.py", label="Prompted Pictures")
+st.write("Tell StabilityAI's API to make a picture for you!")
 st.divider()
 st.page_link("pages/voyagergpt.py", label="VoyagerGPT")
 st.write("Generate a Star Trek script using my very own VoyagerGPT!")

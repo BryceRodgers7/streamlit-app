@@ -16,9 +16,9 @@ st.title("Duuuuuune!! :sunny: :sunny: :sunny: :hot_face: ")
 st.subheader("Topic Modeling with TF-IDF")
 
 colab = "https://colab.research.google.com/drive/1Y2RtOJvgLY3s_qdehyVJMUYeKwH_aZlM?usp=sharing"
-st.write("full jupyter notebook found [here](%s)" % colab)
+st.write("Complete jupyter notebook found [here](%s)" % colab)
 trilogy = "https://raw.githubusercontent.com/ganesh-k13/shell/master/test_search/www.glozman.com/TextPages/Frank%20Herbert%20-%20Dune.txt"
-st.write("#1: obtain the corpus: [here](%s) the complete Dune Trilogy" % trilogy)
+st.write("#1: Obtain the corpus: [here](%s) the complete Dune Trilogy" % trilogy)
 
 st.write("#2: Divide each book into documents (in this case, by chapter, but you could also divvy by page)")
 divvy_code = '''chp_start_idx_bk1 = [11, 184, 310, 422, 571, 635, 729, 888, 1010, 1065, 1201, 1278, 1514, 1601, 1651, 2031, 2604, 2780, 2832, 3043, 3252]

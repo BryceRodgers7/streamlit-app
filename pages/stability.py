@@ -14,7 +14,7 @@ menu_with_redirect()
 # current_content = io.BytesIO()
 
 
-st.title("Welcome to the special Picture Page!!")
+st.title("Prompted Pictures")
 st.write("please note that each submission costs 25 cents, so don't go crazy lol!")
 parrot_path = './.static/parrot.jpg'
 parrot_caption = 'A beautiful parrot before a lush background of jungle canopy.'
