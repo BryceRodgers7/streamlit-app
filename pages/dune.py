@@ -63,10 +63,10 @@ document 1 in trilogy scores were ['paul', 'said', 'mother', 'gom', 'jabbar', 'p
 document 1 has delta ['hand', 'pain']'''
 st.code(book1_delta, language="python")
 
-st.write("We can see that they mention 9 of the same top 10 words in the first book, but when we examine it as a single chapter out of the entire story (vs just the first book), the more significant word is 'pain' not 'hand'.")
+st.write("We can see that they mention 9 of the same top 10 words in the first book, but when we examine it as a single chapter in the entire trilogy (vs as a single chapter in just the first book) the significant term is 'pain' not 'hand'.")
 st.divider()
-st.write("Contextualizing the difference from the story-perspective; the first chapter is primarily about (spoiler!) young Paul's encounter with an old woman and a mysterious black box.")
-st.write("When his hand is in the box, it inflicts great pain upon him. As an exercise in self-control he must keep his hand in the box, or immediately die.")
+st.write("Contextualizing the difference from the story-perspective; the first chapter is primarily about (spoiler!) young Paul's encounter with an old woman and her mysterious black box.")
+st.write("When his hand is in the box, it inflicts great pain upon him. As an exercise of self-control, he must keep his hand in the box or else immediately die.")
 st.write("The whole trilogy is filled with pain - pain on a galactic scale! But it is written in more than one word... there is 'struggle' and 'torment' etc.")
-st.write("Paul exercises self-control throughout the story, so the reader does not forget about the weird gom jabbar episode at the beginning.")
+st.write("Paul exercises self-control throughout the story, so by the end the reader does not forget about the weird gom jabbar episode at the beginning.")
 st.write("To the reader who has finished the entire story, the 'pain' of that moment is indeed more relevant than his 'hand'. 	:exploding_head: :astonished:")
