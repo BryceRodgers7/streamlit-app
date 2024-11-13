@@ -206,7 +206,7 @@ st.divider()
 
 if st.button("Generate some Star Trek text!!"):
     torch.manual_seed(input_seed)
-    st.write(f"generating with seed {input_seed}... just a moment")
+    st.write(f"generating with seed {input_seed} and temperature {temperature}... just a moment")
     context = torch.zeros((1, 1), dtype=torch.long, device=device)
     start_time = time.time()    
     strang = decode(model.generate(context, max_new_tokens=100)[0].tolist())

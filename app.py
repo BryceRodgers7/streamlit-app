@@ -28,7 +28,7 @@ def set_role():
 # )
 
 # use one of these 3
-st.write("Welcome! Explore this website by using the sidebar, or the links below")
+st.write("Welcome! Explore this website by using the sidebar and the links below")
 # st.markdown("<p style='font-size:20px; font-weight:bold;'>Welcome! Explore this website by using the sidebar, or the links below</p>", unsafe_allow_html=True)
 # st.markdown("<p style='font-size:20px; font-weight:bold;'>Navigate using the sidebar, or the links below</p>", unsafe_allow_html=True)
 
@@ -51,6 +51,6 @@ st.write("Familiarize yourself with different warriors from the World of Warcraf
 st.divider()
 st.page_link("pages/dune.py", label="Dune Universe")
 st.write("Discover the Dune Universe like you've never experienced it before!... A Topic Model using TF-IDF.")
-st.divider()
-st.page_link("pages/pps.py", label="Dune Movie")
-st.write("Check out the Dune (2021) script and compare the topics against the books!")
+# st.divider()
+# st.page_link("pages/pps.py", label="Dune Movie")
+# st.write("Preprocess the Dune (2021) script and computationally compare its topics against the books!")
