@@ -7,7 +7,7 @@ from random import randrange
 menu_with_redirect()
 
 st.title('💬 Pirate Chatbot')
-st.write('Change the LLM, its parameters, and the hidden prompt using the sidebar.')
+st.write('Change the LLM, its parameters using the sidebar. Change the hidden prompt below.')
 st.markdown("### Use the chatbox at the bottom of the page to converse.")
 
 # Openers
@@ -35,7 +35,7 @@ top_p = st.sidebar.slider('top_p', min_value=0.01, max_value=1.0, value=0.9, ste
 max_length = st.sidebar.slider('max_length', min_value=32, max_value=128, value=120, step=8)
 
 # Create editable hidden prompt
-hidden_prompt = st.text_area("Below is the 'hidden prompt'. This will be prepended to your regular chat message." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
+hidden_prompt = st.text_area("Below is the 'hidden prompt'. This will be prepended to your chat message." , "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'. You talk like a pirate.")
 st.divider()
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
@@ -67,7 +67,7 @@ def generate_llama2_response(prompt_input, hiddenprompt):
     return output
 
 # User-provided prompt
-if prompt := st.chat_input("Type your regular chat message here.", disabled=not replicate_api):
+if prompt := st.chat_input("Type your chat message here.", disabled=not replicate_api):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
