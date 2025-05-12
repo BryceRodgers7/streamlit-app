@@ -1,6 +1,7 @@
 import streamlit as st
 from menu import menu_with_redirect
-from fastai.vision.all import *
+import torch
+from fastai.learner import load_learner
 from PIL import Image
 
 menu_with_redirect()
@@ -8,12 +9,21 @@ menu_with_redirect()
 PATH = './.static/models/allfourfinetuned.pkl'
 categories = ('Grunt', 'Footman', 'Ghoul', 'Night Elf Archer')
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
-    learner = load_learner(PATH)
-    return learner
+    try:
+        learner = load_learner(PATH, cpu=True)
+        return learner
+    except Exception as e:
+        st.error(f"Error loading model: {str(e)}")
+        st.error("Please ensure the model file exists at the specified path and is compatible with the current version of fastai.")
+        return None
 
 model = load_model()
+
+if model is None:
+    st.error("Failed to load the model. The application cannot continue.")
+    st.stop()
 
 st.title('Warcraft Factions')
 st.subheader('The Roster')
