@@ -1,7 +1,9 @@
-streamlit>=1.26.0
+streamlit>=1.24.0
 
 replicate
 
-torch
+torch==2.0.1
+torchvision==0.15.2
+fastai==2.7.13
 
-fastai
+Pillow>=9.0.0
