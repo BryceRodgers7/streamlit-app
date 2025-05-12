@@ -1,8 +1,11 @@
 import streamlit as st
 from menu import menu_with_redirect
 import torch
-from fastai.learner import load_learner
+import pickle
 from PIL import Image
+import sys
+from pathlib import Path
+from torch.hub import load_state_dict_from_url
 
 menu_with_redirect()
 
@@ -12,11 +15,13 @@ categories = ('Grunt', 'Footman', 'Ghoul', 'Night Elf Archer')
 @st.cache_resource
 def load_model():
     try:
-        learner = load_learner(PATH, cpu=True)
+        # Load the pickle file directly
+        with open(PATH, 'rb') as f:
+            learner = pickle.load(f)
         return learner
     except Exception as e:
         st.error(f"Error loading model: {str(e)}")
-        st.error("Please ensure the model file exists at the specified path and is compatible with the current version of fastai.")
+        st.error("Please ensure the model file exists at the specified path and is a valid fastai model.")
         return None
 
 model = load_model()
@@ -53,10 +58,12 @@ if uploaded_file is not None:
     
     # Predict the class of the image
     st.write("Classifying...")
-    pred, pred_idx, probs = model.predict(image)
-    
-    # Display the result
-    st.write(f"Prediction: {pred}")
-    st.write(f"Confidence: {probs[pred_idx]:.4f}")
+    try:
+        pred, pred_idx, probs = model.predict(image)
+        # Display the result
+        st.write(f"Prediction: {pred}")
+        st.write(f"Confidence: {probs[pred_idx]:.4f}")
+    except Exception as e:
+        st.error(f"Error during prediction: {str(e)}")
 else:
     st.write("awaiting uploaded image")
