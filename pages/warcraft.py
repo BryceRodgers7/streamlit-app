@@ -1,11 +1,12 @@
 import streamlit as st
 from menu import menu_with_redirect
 import torch
-import pickle
+from torch.hub import load_state_dict_from_url
+from fastai.learner import load_learner
+from fastai.vision.all import *
 from PIL import Image
 import sys
 from pathlib import Path
-from torch.hub import load_state_dict_from_url
 
 menu_with_redirect()
 
@@ -15,9 +16,8 @@ categories = ('Grunt', 'Footman', 'Ghoul', 'Night Elf Archer')
 @st.cache_resource
 def load_model():
     try:
-        # Load the pickle file directly
-        with open(PATH, 'rb') as f:
-            learner = pickle.load(f)
+        # Use fastai's load_learner which handles the custom serialization
+        learner = load_learner(PATH, cpu=True)
         return learner
     except Exception as e:
         st.error(f"Error loading model: {str(e)}")
