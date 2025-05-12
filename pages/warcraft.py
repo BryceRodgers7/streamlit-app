@@ -31,6 +31,7 @@ if model is None:
     st.stop()
 
 st.title('Warcraft Factions')
+st.write('This page allows you to upload an image and check which faction it belong to')
 st.subheader('The Roster')
 st.write('In warcraft, each faction has a basic type of soldier that makes up the bulk of their numbers')
 
