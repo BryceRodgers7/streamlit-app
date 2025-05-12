@@ -41,7 +41,7 @@ def display_images_side_by_side(image_paths, captions, width=150):
     # Display each image in its respective column, along with caption
     for col, img, caption in zip(columns, image_paths, captions):
         with col:
-            st.image(img, caption=caption, use_column_width=False, width=width)
+            st.image(img, caption=caption, use_container_width=False, width=width)
 
 # st.write("The Roster of Warcraft World")
 image_paths = ["./.static/footman.jpg", "./.static/grunt.jpg", "./.static/ghoul.jpg", "./.static/nearcher.jpg"]
@@ -54,7 +54,7 @@ uploaded_file = st.file_uploader("Upload an image to determine which warcraft ro
 if uploaded_file is not None:
     # Display the uploaded image
     image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    st.image(image, caption='Uploaded Image', use_container_width=True)
     
     # Predict the class of the image
     st.write("Classifying...")
